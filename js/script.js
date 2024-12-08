@@ -1,88 +1,137 @@
-// Задача 1: Выбор напитка
-const timeOfDay = prompt("Введите время суток (утро, день, вечер):");
+// Задача 1
+const numbers = [52, 31, 9, 85, 31, 45];
+let sum = 0;
+let i = 0;
 
-if (typeof timeOfDay === "string" && timeOfDay.trim() !== "") {
-  let drink;
-  if (timeOfDay.toLowerCase() === "утро") {
-    drink = "кофе";
-  } else if (timeOfDay.toLowerCase() === "день") {
-    drink = "чай";
-  } else if (timeOfDay.toLowerCase() === "вечер") {
-    drink = "горячий шоколад";
-  } else {
-    alert("Некорректный ввод. Введите одно из значений: утро, день, вечер.");
-  }
-  if (drink) {
-    alert(`Мы рекомендуем вам: ${drink}`);
-  }
-} else {
-  alert("Ошибка ввода. Введите непустую строку.");
+while (i < numbers.length) {
+  sum += numbers[i];
+  i++;
 }
 
-// Задача 2: Объект с данными пользователя
-const user = {
-  name: prompt("Введите ваше имя:"),
-  age: parseInt(prompt("Введите ваш возраст:")),
-  subject: prompt("Введите ваш любимый предмет:"),
-  grade: prompt("Введите вашу оценку по этому предмету:"),
-};
+console.log(`Сумма чисел: ${sum}`);
 
-console.log("Исходный объект:", user);
-
-// Увеличение возраста на 5
-user.age += 5;
-
-console.log("Обновленный возраст:", user.age);
-console.log("Обновленный объект:", user);
-
-// Задача 3: Работа с массивом фильмов
-const movies = [
+// Задача 2
+const books = [
   {
-    title: "Начало",
-    director: "Кристофер Нолан",
-    year: 2010,
-    genre: "фантастика",
+    title: "To Kill a Mockingbird",
+    author: "Harper Lee",
+    numberOfPages: 281,
+    genre: "Fiction",
+    awards: ["Pulitzer Prize", "Brotherhood Award", "Paperback of the Year"],
   },
   {
-    title: "Форрест Гамп",
-    director: "Роберт Земекис",
-    year: 1994,
-    genre: "драма",
+    title: "1984",
+    author: "George Orwell",
+    numberOfPages: 328,
+    genre: "Dystopian",
+    awards: ["Prometheus Hall of Fame Award", "Time's Top 100 Novels"],
   },
   {
-    title: "Криминальное чтиво",
-    director: "Квентин Тарантино",
-    year: 1994,
-    genre: "боевик",
+    title: "The Great Gatsby",
+    author: "F. Scott Fitzgerald",
+    numberOfPages: 180,
+    genre: "Classic",
+    awards: ["Modern Library's Top 100", "National Book Award Nominee"],
   },
   {
-    title: "Зеленая миля",
-    director: "Фрэнк Дарабонт",
-    year: 1999,
-    genre: "триллер",
+    title: "Moby Dick",
+    author: "Herman Melville",
+    numberOfPages: 635,
+    genre: "Adventure",
+    awards: ["Regarded as a Great American Novel", "Part of the Western Canon"],
   },
   {
-    title: "Жизнь прекрасна",
-    director: "Роберто Бениньи",
-    year: 1997,
-    genre: "комедия/драма",
+    title: "Pride and Prejudice",
+    author: "Jane Austen",
+    numberOfPages: 432,
+    genre: "Romance",
+    awards: ["BBC's Big Read", "Guardian's 100 Best Novels"],
   },
 ];
 
-console.log("Режиссёр второго фильма:", movies[1].director);
-console.log("Жанр четвёртого фильма:", movies[3].genre);
+for (let i = 0; i < books.length; i++) {
+  const book = books[i];
+  console.log(
+    `Название: ${book.title}, Автор: ${book.author}, Количество страниц: ${book.numberOfPages}, Жанр: ${book.genre}`
+  );
+  console.log("Награды:");
+  for (let j = 0; j < book.awards.length; j++) {
+    console.log(`- ${book.awards[j]}`);
+  }
+  console.log("------------");
+}
 
-// Задача 4: Работа с массивом покупок
-const shoppingList = ["яблоки", "бананы", "молоко", "сыр", "хлеб", "шоколад"];
+// Задача 3
+function calculateAveragePages(books) {
+  let totalPages = 0;
 
-// Добавляем новый товар в начало массива
-shoppingList.unshift("яйца");
-console.log("После добавления нового товара:", shoppingList);
+  for (let i = 0; i < books.length; i++) {
+    totalPages += books[i].numberOfPages;
+  }
 
-// Удаляем последний товар из массива
-shoppingList.pop();
-console.log("После удаления последнего товара:", shoppingList);
+  return totalPages / books.length;
+}
 
-// Заменяем третий элемент на два новых
-shoppingList.splice(2, 1, "йогурт", "сок");
-console.log("После замены третьего элемента:", shoppingList);
+console.log(
+  calculateAveragePages([
+    {
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee",
+      numberOfPages: 281,
+    },
+    { title: "1984", author: "George Orwell", numberOfPages: 328 },
+    {
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      numberOfPages: 180,
+    },
+    { title: "Moby Dick", author: "Herman Melville", numberOfPages: 635 },
+    { title: "Pride and Prejudice", author: "Jane Austen", numberOfPages: 432 },
+  ])
+);
+
+// Задача 4
+function repeatString(str, n) {
+  let result = "";
+
+  for (let i = 0; i < n; i++) {
+    result += str;
+  }
+
+  return result;
+}
+
+const inputStr = "hello";
+const inputN = 3;
+
+console.log(repeatString(inputStr, inputN));
+
+// Задача 5
+function calculateAverage(numbers) {
+  let sum = 0;
+
+  for (let num of numbers) {
+    sum += num;
+  }
+
+  return sum / numbers.length;
+}
+
+const inputNumbers = [10, 20, 30, 40, 50, 60];
+
+console.log(calculateAverage(inputNumbers));
+
+// Задача 6
+function countEvenNumbers(numbers) {
+  let evenNumbers = [];
+
+  for (let num of numbers) {
+    if (num % 2 === 0) {
+      evenNumbers.push(num);
+    }
+  }
+
+  return evenNumbers;
+}
+
+console.log(countEvenNumbers([1, 2, 3, 4, 5, 6]));
